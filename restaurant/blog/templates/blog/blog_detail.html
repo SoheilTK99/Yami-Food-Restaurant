@@ -1,0 +1,373 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+	
+	<!-- Start blog details -->
+	<style>
+		.heading-title {
+			font-family: "Vazirmatn", sans-serif;
+			margin-top: 90px;
+		}
+		.heading-title .page-title{
+			font-family: "Amiri", sans-serif;
+			font-weight: 900;
+			font-size: 40px;
+		}
+		.inner-blog-detail {
+			text-align: right;
+			direction: rtl;
+		}
+		.blog-comment-box {
+			text-align: right;
+			direction: rtl;
+		}
+		.comment-item-right {
+			direction: rtl;
+			text-align: right;
+			padding-top: 30px;  /* یا margin-top: 30px; */
+			display: flex;
+			flex-direction: column;
+			flex: 1;
+		}
+		.comment-item {
+			display: flex;
+			gap: 5px;
+			border: 1px solid #ccc;
+			border-radius: 15px;
+			padding: 15px;
+			margin-bottom: 20px;
+			background-color: #fdfdfd;
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+			align-items: flex-start;
+		}
+		.comment-item-left img {
+			width: 60px;
+			height: 60px;
+			border-radius: 50%;
+			object-fit: cover;
+		  }
+		  .right-btn-re {
+			font-family: "Vazirmatn", sans-serif;
+			font-style: normal;
+			align-self: flex-end;
+			margin-top: 0px;
+			color: #007bff;
+			text-decoration: none;
+			font-size: 14px;
+		  }
+		  .comment-item .pull-left{
+			direction: ltr;
+			text-align: left;
+		  }
+		  .comment-item .des-l{
+			text-align: justify;
+			margin-top: 17px;
+		  }
+		  .blog-tag-box{
+			text-align: right;
+			direction: rtl;
+		  }
+		  .img-fluid-original {
+			width: 100%;             
+			height: 100%;             
+			object-fit: cover;        
+			display: block;           
+			
+		  }
+
+	</style>
+
+	<div class="blog-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2 class="page-title">{{ blog.title }}</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xl-8 col-lg-8 col-12">
+					<div class="blog-inner-details-page">
+						<div class="blog-inner-box">
+							<div class="side-blog-img">
+								<img class="img-fluid-original" src="{{blog.image.url}}" alt="" >							
+								<div class="date-blog-up">
+									{{ blog.created_at |date:"d b"}}
+								</div>
+							</div>
+							<div class="inner-blog-detail details-page">
+								<h3>{{ blog.discription }}</h3>
+								<ul>
+									<li><i class="zmdi zmdi-account"></i>پست شده توسط : <span>{{ blog.author}}</span></li>
+									<li>|</li>
+									<li><i class="zmdi zmdi-time"></i>زمان انتشار : <span>{{ blog.created_at |time}}</span></li>
+								</ul>
+								<p dir="rtl">{{ blog.content|safe}}</p>
+							</div>
+						</div>
+						<div class="blog-comment-box">
+							<h3>نظرات</h3>
+
+							{% for cm in comments %}
+							<div class="comment-item">
+								<div class="comment-item-left">
+									<img src="\static\images\avt-img.jpg" alt="">
+								</div>
+								<div class="comment-item-right">
+									<div class="pull-right">
+										<a class="cm-name" href="">{{ cm.name }}</a>
+									</div>
+									<div class="pull-left">
+										<i class="fa fa-clock-o" aria-hidden="true"></i>Time : <span>{{cm.date}}</span>
+									</div>
+									<div class="des-l">
+										<p>{{cm.message}}</p>
+									</div>
+									<a href="#" class="right-btn-re"><i class="fa fa-reply" aria-hidden="true"></i> پاسخ</a>
+								</div>
+							</div>	
+							{% endfor %}
+							<style>
+								.comment-respond-box{
+									text-align: right;
+									direction: rtl;
+								}
+								.form-group {
+									border-radius: 50px;
+									border: #007bff;
+								}
+							</style>
+						</div>
+						<div class="comment-respond-box">
+							<h3>نظر شما در این مورد چیه؟</h3>
+
+							<div class="comment-respond-form">
+								<form id="commentrespondform" class="comment-form-respond row" method="post">
+									<form method="post">
+									{% csrf_token %}
+									<div class="col-lg-6 col-md-6 col-sm-6">
+										<div class="form-group">
+											<input id="name_com" class="form-control" name="name" placeholder="نام" type="text" style="border-radius: 8px;">
+										</div>
+										<div class="form-group">
+											<input id="email_com" class="form-control" name="email" placeholder="پست الکترونیک" type="email" style="border-radius: 8px;">
+										</div>
+									</div>
+									<div class="col-lg-6 col-md-6 col-sm-6">
+										<div class="form-group">
+											<textarea class="form-control" name="message" id="textarea_com" placeholder="پیام شما" rows="2" style="border-radius: 8px;"></textarea>
+										</div>
+									</div>
+									<div class="col-lg-12 col-md-12 col-sm-12">
+										<button  style="border-radius: 8px;" class="btn btn-submit">ثبت نظر</button>
+									</form>
+
+									</div>
+								</form>
+							</div>
+						</div>
+					</div>
+				</div>
+				
+				<div class="col-xl-4 col-lg-4 col-md-6 col-sm-8 col-12 blog-sidebar">
+					<div class="right-side-blog" style="text-align: right; direction: rtl;">
+						<h3>جستجو</h3>
+							<form method="GET" action="{% url "blog:search" %}">
+								<div class="blog-search-form">
+									<input name="search" placeholder="جستجوی مقاله مورد نظر" type="text" style="border-radius: 8px;">
+									<button class="search-btn" type="submit">
+										<i class="fa fa-search" aria-hidden="true"></i>
+									</button>
+								</div>
+					</form>
+						<h3>دسته بندی</h3>
+						<div class="blog-categories">
+							<ul>
+                                {% for cat in categories %}
+
+                                <li><a href="{% url 'blog:category' cat.slug %}"><span>{{ cat.title }}</span></a></li>
+
+                                {% endfor %}
+							</ul>
+						</div>
+						<h3>پست های اخیر</h3>
+						<div class="post-box-blog">
+							<div class="recent-post-box">
+								<style>
+									.recent-box-blog{
+										display:grid;
+										flex-direction: column;  /* یا row اگر کنار هم می‌خوای */
+										gap: 1rem;
+										border: 1px solid #ccc;
+										border-radius: 15px;
+										padding: 10px; /* فاصله داخل جعبه از بالا و راست و سایر جهات */
+									}
+									.img-fluid-recent{
+										display: flex;
+										align-items: center;
+										gap: 10px;
+										border: 1px solid #ccc;
+										border-radius: 15px;
+										padding: 5px; /* فاصله داخل آیتم از تصویر */
+  										transition: background-color 0.3s ease;
+									}
+									.img-fluid-recent img{
+										width: 80px;               /* یا هر سایز ثابتی که مد نظرت هست */
+										height: 80px;
+										object-fit: cover;         /* فیت کردن تصویر بدون فضای پرت */
+										border-radius: 1000px;        /* اگه گوشه‌ها رو می‌خوای گرد کنی */
+										
+									}
+									.img-fluid-recent:hover {
+										background-color: #8B4513; /* رنگ قهوه‌ای روی هاور */
+										border-radius: 8px; /* گرد شدن نوار قهوه‌ای */
+									}
+
+								</style>
+                                {% for blog in recents %}
+
+                                <div class="recent-box-blog">
+									<div class="recent-img">
+										<img class="img-fluid-recent" src="{{blog.image.url}}" style="height: 100px;" alt="">
+									</div>
+									<div class="recent-info" style="margin-right: 8px;">
+										<h4 style="margin-top: 0px;">{{ blog.discription }}</h4>
+										<ul style="margin-bottom: 4px;">
+											<li><i class="zmdi zmdi-account"></i>Posted By : <span>{{ blog.author }}</span></li>
+											<li>|</li>
+											<li><i class="zmdi zmdi-time"></i>Time : <span>{{ blog.created_at|time }}</span></li>
+										</ul>
+										
+									</div>
+								</div>
+                                
+                                {% endfor %}
+									<div class="recent-img">
+										<img class="img-fluid" src="images/post-img-02.jpg" alt="">
+									</div>
+									<div class="recent-info">
+										<ul>
+											
+									</div>
+								</div>
+							</div>
+						</div>
+						
+						<div class="blog-tag-box">
+							<h3>تگ های اخیر</h3>
+							<ul class="list-inline tag-list">
+								{% for tag in tags %}
+                                <li class="list-inline-item"><a href="{% url 'blog:tag' tag.slug %}">{{tag.title}}</a></li>
+                                {% endfor %}
+
+						</div>
+					</div>
+				</div>
+			
+			</div>
+		</div>
+	</div>
+	<!-- End details -->
+
+		<!-- Start Contact info -->
+		<style>
+			.contact-imfo-box {
+				padding-top: 16px;
+				padding-bottom: 16px;
+				margin-top: 0;
+				margin-bottom: 0;
+			}
+			.contact-imfo-box .col-md-4 {
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				gap: 10px;
+				text-align: right;
+				direction: rtl;
+			}
+			
+			.contact-imfo-box i {
+				font-size: 28px;
+				background-color: white;
+				border-radius: 50%;
+				width: 50px;
+				height: 50px;
+				line-height: 50px;
+				text-align: center;
+				color: #c69c6d;
+				flex-shrink: 0;
+				transition: transform 0.3s ease, box-shadow 0.3s ease;
+				animation: popIn 0.6s ease;
+			}
+			
+			
+			@keyframes popIn {
+				0% {
+					transform: scale(0.8);
+					opacity: 0;
+				}
+				100% {
+					transform: scale(1);
+					opacity: 1;
+				}
+			}
+			
+			
+			.contact-imfo-box i:hover {
+				transform: scale(1.2) rotate(5deg);
+				box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+			}
+			
+			.contact-imfo-box .overflow-hidden {
+				margin: 0;
+			}
+			
+			.contact-imfo-box h4 {
+				margin: 0 0 5px;
+			}
+			
+			.contact-imfo-box p {
+				margin: 0;
+				font-size: 15px;
+			}
+		</style>
+
+	<div class="contact-imfo-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<i class="fa fa-volume-control-phone"></i>
+					<div class="overflow-hidden" style="text-align: center; direction: rtl;">
+						<h4 style="font-size: 25px; font-weight: 500;">تماس</h4>
+						<p class="lead" style="font-size: 17px; font-weight: 300;">
+							5781 038 910 98+	   
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-envelope"></i>
+					<div class="overflow-hidden" style="text-align: center; direction: rtl;">
+						<h4 style="font-size: 25px; font-weight: 500;">پست الکترونیک</h4>
+						<p class="lead" style="font-size: 17px; font-weight: 300;">
+						        	soheil.ce.99@gmail.com
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-map-marker"></i>
+					<div class="overflow-hidden">
+						<h4 style="text-align: center; direction: rtl; font-size: 25px; font-weight: 500; ">نشانی</h4>
+						<a href="https://maps.app.goo.gl/64LK4VYf1nwnE2bB6" target="_blank"
+						   style="font-size: 17px; font-weight: 300; text-decoration: none; color:rgb(255, 255, 255);">
+							سمنان، میدان سعدی، بلوار 17 شهریور
+						</a>
+					</div>
+				</div>											
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Contact info -->
+{% endblock content %}

@@ -1,0 +1,300 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+						<!-- Start slides -->
+		 <style>
+			#slides h1, #slides p {
+				font-family: "El Messiri", sans-serif;
+			}
+	 </style>						 
+	<div id="slides" class="cover-slides">
+		<ul class="slides-container">
+			<li class="text-center">
+				<img src="/media/foods/blog-slider1.jpg" alt="">
+				<div class="container">
+					<div class="row">
+					</div>
+				</div>
+			</li>
+			<li class="text-center">
+				<img src="/media/foods/blog-slider2.jpg" alt="">
+				<div class="container">
+					<div class="row">
+					</div>
+				</div>
+			</li>
+			<li class="text-center">
+				<img src="/media/foods/blog-slider3.jpg" alt="">
+				<div class="container">
+					<div class="row">
+					</div>
+				</div>
+			</li>
+			<li class="text-center">
+				<img src="/media/foods/blog-slider4.jpg" alt="">
+				<div class="container">
+					<div class="row">
+					</div>
+				</div>
+			</li>
+			<li class="text-center">
+				<img src="/media/foods/blog-slider5.jpg" alt="">
+				<div class="container">
+					<div class="row">
+					</div>
+				</div>
+			</li>
+			<li class="text-center">
+				<img src="/media/foods/blog-slider6.jpg" alt="">
+				<div class="container">
+					<div class="row">
+					</div>
+				</div>
+			</li>
+		</ul>
+		<div class="slides-navigation">
+			<a href="#" class="next"><i class="fa fa-angle-right" aria-hidden="true"></i></a>
+			<a href="#" class="prev"><i class="fa fa-angle-left" aria-hidden="true"></i></a>
+		</div>
+	</div>
+	<!-- End slides -->
+	
+	<!-- Start blog -->
+
+	<style>
+		.blog-box .blog-title{
+			font-family: "El Messiri", sans-serif;
+			font-size: 40px;
+			font-weight: 600;
+		}
+	</style>
+
+	<div class="blog-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2 class="blog-title"  style="text-align: right; direction:rtl;">مجله یامی فود</h2>
+					</div>
+				</div>
+			</div>
+			<style>
+				.col-lg-4 .blog-detail{
+					text-align: right;
+					direction: rtl;
+					width: 350px;
+					height: 420px;
+				}
+			</style>
+			<div class="row">
+                {% for blog in blog_list %}
+                <div class="col-lg-4 col-md-6 col-12">
+					<div class="blog-box-inner">
+						<div class="blog-img-box">
+							<img class="img-fluid" src="/media/foods/paszamine.jpg" style="height: 420px;" alt="">
+						</div>
+						<div class="blog-detail">
+							<h4>{{ blog.title }}</h4>
+							<ul>
+								<li><span>{{ blog.author }}</span></li>
+								<li>|</li>
+								<li><span>{{ blog.created_at |date:" Y b d " }}</span></li>
+							</ul>
+							<p dir="rtl">{{ blog.content |truncatewords:50 }}</p>
+							<a class="btn btn-lg btn-circle btn-outline-new-white" href=" {% url 'blog:blog_detail' blog.id %}">بیشتر بخوانید</a>
+						</div>
+					</div>
+				</div>  
+                {% endfor %}
+			</div>
+		</div>
+	</div>
+	<!-- End blog -->
+	
+	<!-- Pagination -->
+
+	{% if blog_list.has_other_pages %}
+	<div class="container mb-4">
+	  <div class="row">
+		<div class="col d-flex justify-content-center">
+		  <nav aria-label="Page navigation">
+			<ul class="pagination custom-pagination">
+			  {% if blog_list.has_previous %}
+				<li class="page-item">
+				  <a class="page-link" href="?page=1">اولین</a>
+				</li>
+				<li class="page-item">
+				  <a class="page-link" href="?page={{ blog_list.previous_page_number }}" aria-label="Previous">
+					<span aria-hidden="true">&laquo;</span>
+				  </a>
+				</li>
+			  {% endif %}
+	
+			  {% for page in blog_list.paginator.page_range %}
+				{% if blog_list.number == page %}
+				  <li class="page-item active">
+					<span class="page-link">{{ page }}</span>
+				  </li>
+				{% elif page >= blog_list.number|add:"-2" and page <= blog_list.number|add:"2" %}
+				  <li class="page-item">
+					<a class="page-link" href="?page={{ page }}">{{ page }}</a>
+				  </li>
+				{% endif %}
+			  {% endfor %}
+	
+			  {% if blog_list.has_next %}
+				<li class="page-item">
+				  <a class="page-link" href="?page={{ blog_list.next_page_number }}" aria-label="Next">
+					<span aria-hidden="true">&raquo;</span>
+				  </a>
+				</li>
+				<li class="page-item">
+				  <a class="page-link" href="?page={{ blog_list.paginator.num_pages }}">آخرین</a>
+				</li>
+			  {% endif %}
+			</ul>
+		  </nav>
+		</div>
+	  </div>
+	</div>
+	{% endif %}
+	
+
+
+	<style>
+		.custom-pagination .page-link {
+			border: none;
+			margin: 0 3px;
+			color: #333;
+			border-radius: 8px;
+			transition: all 0.2s ease-in-out;
+			padding: 6px 12px;
+			background-color: #f8f9fa;
+			box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+		}
+		
+		.custom-pagination .page-link:hover {
+			background-color: #e2e6ea;
+			color: #007bff;
+		}
+		
+		.custom-pagination .active .page-link {
+			background-color: #007bff;
+			color: #fff;
+			font-weight: bold;
+			box-shadow: 0 2px 5px rgba(0,0,0,0.15);
+		}
+		
+		.custom-pagination .page-item.disabled .page-link {
+			color: #ccc;
+			pointer-events: none;
+			background-color: #f1f1f1;
+		}
+		</style>
+		
+
+	<!-- Start Contact info -->
+	<style>
+		.contact-imfo-box {
+			padding-top: 16px;
+			padding-bottom: 16px;
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+		.contact-imfo-box .col-md-4 {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 10px; /* فاصله بین آیکون و متن */
+			text-align: right;
+			direction: rtl;
+		}
+		
+		.contact-imfo-box i {
+			font-size: 28px;
+			background-color: white;
+			border-radius: 50%;
+			width: 50px;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+			color: #c69c6d;
+			flex-shrink: 0;
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+			animation: popIn 0.6s ease;
+		}
+		
+		/* انیمیشن اولیه موقع لود */
+		@keyframes popIn {
+			0% {
+				transform: scale(0.8);
+				opacity: 0;
+			}
+			100% {
+				transform: scale(1);
+				opacity: 1;
+			}
+		}
+		
+		/* افکت هاور */
+		.contact-imfo-box i:hover {
+			transform: scale(1.2) rotate(5deg);
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+		}
+		
+		.contact-imfo-box .overflow-hidden {
+			margin: 0;
+		}
+		
+		.contact-imfo-box h4 {
+			margin: 0 0 5px;
+		}
+		
+		.contact-imfo-box p {
+			margin: 0;
+			font-size: 15px;
+		}
+	</style>
+
+	<div class="contact-imfo-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<i class="fa fa-volume-control-phone"></i>
+					<div class="overflow-hidden" style="text-align: center; direction: rtl;">
+						<h4 >تماس</h4>
+						<p class="lead" style="font-size: 20px; font-weight: 300;">
+							5781 038 910 98+	   
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-envelope"></i>
+					<div class="overflow-hidden" style="text-align: center; direction: rtl;">
+						<h4>پست الکترونیک</h4>
+						<p class="lead" style="font-size: 20px; font-weight: 300;">
+						        	soheil.ce.99@gmail.com
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-map-marker"></i>
+					<div class="overflow-hidden" >
+						<h4 style="text-align: center; direction: rtl;">نشانی</h4>
+						<p class="lead" style="font-size: 19px; font-weight: 300;">
+							سمنان، میدان سعدی، بلوار 17 شهریور
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Contact info -->
+
+
+
+
+{% endblock content %}
+

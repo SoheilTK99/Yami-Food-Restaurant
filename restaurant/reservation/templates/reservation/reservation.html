@@ -1,0 +1,214 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+	<!-- Start All Pages -->
+	<div class="all-page-title page-breadcrumb">
+		<div class="container text-center">
+			<div class="row">
+				<div class="col-lg-12">
+					<h1></h1>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End All Pages -->
+	
+	<!-- Start Reservation -->
+	 <style>
+		.reservation-box .welcome-title{
+			font-family: "Vazirmatn", sans-serif;
+		}
+	 </style>
+	<div class="reservation-box">
+		<div class="container">
+			 <div class="row">
+				<div class="col-lg-12">
+					<div class="heading-title text-center">
+						<h2 class="welcome-title">.میزبانی شما مایه افتخار ماست، لطفاً اطلاعات رزرو را ثبت نمایید</h2>
+					</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-lg-12 col-sm-12 col-xs-12">
+					<div class="contact-block">
+						<form method="POST">
+							<style>
+								.col-md-6{
+									text-align: right;
+									direction: rtl;
+								}
+							</style>
+							{% csrf_token %}
+							<div class="row">
+								<div class="col-md-6">
+									<h3>زمان رزرو</h3>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input style="border-radius: 8px;"  id="input_date" class="datepicker picker__input form-control" name="date" type="text" value="" placeholder="تاریخ" equired data-error="Please enter Date">
+											<div class="help-block with-errors"></div>
+										</div>                                 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input style="border-radius: 8px;" id="input_time" name="time" class="time form-control picker__input" placeholder="ساعت" required data-error="Please enter time">
+											<div class="help-block with-errors"></div>
+										</div>                                 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<select style="border-radius: 8px;"  class="custom-select d-block form-control" name="number" id="person" required data-error="Please select Person">
+											  <option disabled selected >تعداد اشخاص</option>
+											  <option value="1">1</option>
+											  <option value="2">2</option>
+											  <option value="3">3</option>
+											  <option value="4">4</option>
+											  <option value="5">5</option>
+											  <option value="6">6</option>
+											  <option value="7">7</option>
+											  <option value="8">8</option>
+											</select>
+											<div class="help-block with-errors"></div>
+										</div> 
+									</div>
+								</div>
+								<div class="col-md-6">
+									<h3>اطلاعات تماس</h3>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input style="border-radius: 8px;" type="text" class="form-control" id="name" name="name" placeholder="نام و نام خانوادگی" required data-error="Please enter your name">
+											<div class="help-block with-errors"></div>
+										</div>                                 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input  style="border-radius: 8px;" type="text" placeholder="پست الکترونیک" id="email" class="form-control" name="email" required data-error="Please enter your email">
+											<div class="help-block with-errors"></div>
+										</div> 
+									</div>
+									<div class="col-md-12">
+										<div class="form-group">
+											<input style="border-radius: 8px;"  type="text" placeholder="شماره تماس" id="phone" class="form-control" name="phone" required data-error="Please enter your Numbar">
+											<div class="help-block with-errors"></div>
+										</div> 
+									</div>
+								</div>
+								<div class="col-md-12">
+									<div class="submit-button text-center">
+										<button  style="border-radius: 8px;" class="btn btn-common" id="submit" type="submit">رزرو میز</button>
+										<div id="msgSubmit" class="h3 text-center hidden"></div> 
+										<div class="clearfix"></div> 
+									</div>
+								</div>
+							</div>            
+						</form>
+					</div>
+				</div>
+			</div> 
+		
+
+		
+		</div>
+	</div>
+	<!-- End Reservation -->
+	<!-- Start Contact info -->
+	<style>
+		.contact-imfo-box {
+			padding-top: 16px;
+			padding-bottom: 16px;
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+		.contact-imfo-box .col-md-4 {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 10px; /* فاصله بین آیکون و متن */
+			text-align: right;
+			direction: rtl;
+		}
+		
+		.contact-imfo-box i {
+			font-size: 28px;
+			background-color: white;
+			border-radius: 50%;
+			width: 50px;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+			color: #c69c6d;
+			flex-shrink: 0;
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+			animation: popIn 0.6s ease;
+		}
+		
+		/* انیمیشن اولیه موقع لود */
+		@keyframes popIn {
+			0% {
+				transform: scale(0.8);
+				opacity: 0;
+			}
+			100% {
+				transform: scale(1);
+				opacity: 1;
+			}
+		}
+		
+		/* افکت هاور */
+		.contact-imfo-box i:hover {
+			transform: scale(1.2) rotate(5deg);
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+		}
+		
+		.contact-imfo-box .overflow-hidden {
+			margin: 0;
+		}
+		
+		.contact-imfo-box h4 {
+			margin: 0 0 5px;
+		}
+		
+		.contact-imfo-box p {
+			margin: 0;
+			font-size: 15px;
+		}
+	</style>
+
+	<div class="contact-imfo-box">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-4">
+					<i class="fa fa-volume-control-phone"></i>
+					<div class="overflow-hidden" style="text-align: center; direction: rtl;">
+						<h4 >تماس</h4>
+						<p class="lead" style="font-size: 20px; font-weight: 300;">
+							5781 038 910 98+	   
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-envelope"></i>
+					<div class="overflow-hidden" style="text-align: center; direction: rtl;">
+						<h4>پست الکترونیک</h4>
+						<p class="lead" style="font-size: 20px; font-weight: 300;">
+						        	soheil.ce.99@gmail.com
+						</p>
+					</div>
+				</div>
+				<div class="col-md-4">
+					<i class="fa fa-map-marker"></i>
+					<div class="overflow-hidden">
+						<h4 style="text-align: center; direction: rtl;">نشانی</h4>
+						<a href="https://maps.app.goo.gl/64LK4VYf1nwnE2bB6" target="_blank"
+						   style="font-size: 19px; font-weight: 300; text-decoration: none; color:rgb(255, 255, 255);">
+							سمنان، میدان سعدی، بلوار 17 شهریور
+						</a>
+					</div>
+				</div>											
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- End Contact info -->
+	
+{% endblock content %}

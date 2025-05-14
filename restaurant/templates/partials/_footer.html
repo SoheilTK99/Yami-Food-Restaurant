@@ -1,0 +1,113 @@
+<footer class="footer-area bg-f">
+    <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+    <style>
+
+        .footerr {
+            direction: rtl;
+        }
+        .footer-area.bg-f {
+            background-image: url('/media/foods/footer1.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        .f-social {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            padding: 0;
+            margin-top: 20px;
+            animation: fadeInUp 1s ease forwards;
+        }
+
+        .f-social li {
+            list-style: none;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInIcon 1s forwards;
+            animation-delay: calc(0.1s * var(--i));
+        }
+
+        .f-social li a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 45px;
+            height: 45px;
+            background: #fff;
+            border-radius: 50%;
+            color: #333;
+            font-size: 22px;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+        }
+
+        .f-social li a:hover {
+            background: #c59d5f;
+            color: #fff;
+            transform: scale(1.15) rotate(5deg);
+        }
+
+        @keyframes fadeInUp {
+            0% {opacity: 0; transform: translateY(30px);}
+            100% {opacity: 1; transform: translateY(0);}
+        }
+
+        @keyframes fadeInIcon {
+            to {opacity: 1; transform: translateY(0);}
+        }
+        .container .col-lg-3{
+            margin-left: 40px;
+            margin-right: 40px;
+        }
+    </style>
+<div class="footerr">
+        <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 text-right" style="direction: rtl;">
+                <h3>درباره ما</h3>
+                <p style="text-align: justify;">
+                    رستوران یامی فود با بیش از یک دهه فعالیت در عرصه‌ی غذاهای سنتی و فرنگی، به‌عنوان یکی از خوش‌نام‌ترین رستوران‌های منطقه، کیفیت و سلامت غذا را در اولویت خود قرار داده است. استفاده از مواد اولیه تازه، رعایت کامل پروتکل‌های بهداشتی و احترام به سلیقه‌ی مشتریان از اصول همیشگی ماست. با دل‌چین، طعم اصالت را در فضایی دلنشین و حرفه‌ای تجربه کنید.
+                </p>
+            </div>
+            <div class="col-lg-3 col-md-6 text-right" style="direction: rtl;">
+                <h3>ساعت کاری</h3>
+                <p><span class="text-color">شنبه تا چهارشنبه : </span>از ساعت 9 الی 23</p>
+                <p><span class="text-color">پنجشنبه : </span>از ساعت 11 الی 21:30</p>
+                <p><span class="text-color">جمعه : </span>فقط سفارشات بیرون بر</p>
+            </div>
+            
+            <div class="col-lg-3 col-md-6 text-right" style="direction: rtl;">
+                <h3>شبکه های اجتماعی</h3>
+
+                <ul class="list-inline f-social">
+                    <li class="list-inline-item"><a href="https://wa.me/989100385781" target="_blank"><i class="fa fa-whatsapp" aria-hidden="true"></i></a></li>
+                    <li class="list-inline-item"><a href="https://github.com/SoheilTK99" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+                    <li class="list-inline-item"><a href="https://t.me/Soheil_Talebee" target="_blank"><i class="fa fa-telegram" aria-hidden="true"></i></a></li>
+                    <li class="list-inline-item"><a href="https://www.instagram.com/soheil_t_kd?igsh=MTFtZHcwMDk4Y2Nidw==" target="_blank"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="copyright">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <p style="text-align: center;">
+                        Design By :
+                        <a href="https://github.com/SoheilTK99" target="_blank" style="font-family: 'Dancing Script', cursive; font-size: 20px;">
+                            Soheil Talebee
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+</footer>
