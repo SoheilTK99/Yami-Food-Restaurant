@@ -101,5 +101,24 @@
     <script src="{% static 'pickadate/picker.date.js' %}"></script>
 
     <script src="{% static 'js/custom.js' %}"></script>
+
+    <script>
+    function toPersianDigits(str) {
+        return str.replace(/\d/g, d => '۰۱۲۳۴۵۶۷۸۹'[d]);
+    }
+
+    function convertAllNumbersToPersian() {
+        const elements = document.querySelectorAll('body *:not(script):not(style)');
+        elements.forEach(el => {
+            if (el.children.length === 0 && el.innerText.trim() !== "") {
+                el.innerText = toPersianDigits(el.innerText);
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", convertAllNumbersToPersian);
+</script>
+
+
 </body>
 </html>

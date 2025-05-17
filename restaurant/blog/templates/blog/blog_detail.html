@@ -271,77 +271,83 @@
 	</div>
 	<!-- End details -->
 
-		<!-- Start Contact info -->
-		<style>
-			.contact-imfo-box {
-				padding-top: 16px;
-				padding-bottom: 16px;
-				margin-top: 0;
-				margin-bottom: 0;
-			}
-			.contact-imfo-box .col-md-4 {
-				display: flex;
-				align-items: center;
-				justify-content: center;
-				gap: 10px;
-				text-align: right;
-				direction: rtl;
-			}
-			
-			.contact-imfo-box i {
-				font-size: 28px;
-				background-color: white;
-				border-radius: 50%;
-				width: 50px;
-				height: 50px;
-				line-height: 50px;
-				text-align: center;
-				color: #c69c6d;
-				flex-shrink: 0;
-				transition: transform 0.3s ease, box-shadow 0.3s ease;
-				animation: popIn 0.6s ease;
-			}
-			
-			
-			@keyframes popIn {
-				0% {
-					transform: scale(0.8);
-					opacity: 0;
-				}
-				100% {
-					transform: scale(1);
-					opacity: 1;
-				}
-			}
-			
-			
-			.contact-imfo-box i:hover {
-				transform: scale(1.2) rotate(5deg);
-				box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-			}
-			
-			.contact-imfo-box .overflow-hidden {
-				margin: 0;
-			}
-			
-			.contact-imfo-box h4 {
-				margin: 0 0 5px;
-			}
-			
-			.contact-imfo-box p {
-				margin: 0;
-				font-size: 15px;
-			}
-		</style>
+	<!-- Start Contact info -->
+	<style>
+		.contact-imfo-box {
+			padding-top: 16px;
+			padding-bottom: 16px;
+			margin-top: 0;
+			margin-bottom: 0;
+		}
+		.contact-imfo-box .lead {
+			font-family: 'Vazirmatn', sans-serif;
 
-	<div class="contact-imfo-box">
+
+		}
+
+		.contact-imfo-box .col-md-4 {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			gap: 10px; /* فاصله بین آیکون و متن */
+			text-align: right;
+			direction: rtl;
+		}
+		
+		.contact-imfo-box i {
+			font-size: 28px;
+			background-color: white;
+			border-radius: 50%;
+			width: 50px;
+			height: 50px;
+			line-height: 50px;
+			text-align: center;
+			color: #c69c6d;
+			flex-shrink: 0;
+			transition: transform 0.3s ease, box-shadow 0.3s ease;
+			animation: popIn 0.6s ease;
+		}
+		
+		/* انیمیشن اولیه موقع لود */
+		@keyframes popIn {
+			0% {
+				transform: scale(0.8);
+				opacity: 0;
+			}
+			100% {
+				transform: scale(1);
+				opacity: 1;
+			}
+		}
+		
+		/* افکت هاور */
+		.contact-imfo-box i:hover {
+			transform: scale(1.2) rotate(5deg);
+			box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+		}
+		
+		.contact-imfo-box .overflow-hidden {
+			margin: 0;
+		}
+		
+		.contact-imfo-box h4 {
+			margin: 0 0 5px;
+		}
+		
+		.contact-imfo-box p {
+			margin: 0;
+			font-size: 15px;
+		}
+	</style>
+
+	<div class="contact-imfo-box" id="contact-section">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-4">
 					<i class="fa fa-volume-control-phone"></i>
 					<div class="overflow-hidden" style="text-align: center; direction: rtl;">
-						<h4 style="font-size: 25px; font-weight: 500;">تماس</h4>
-						<p class="lead" style="font-size: 17px; font-weight: 300;">
+						<h4 >تماس</h4>
+						<p class="lead" style="font-size: 20px; font-weight: 100;">
 							5781 038 910 98+	   
 						</p>
 					</div>
@@ -349,8 +355,8 @@
 				<div class="col-md-4">
 					<i class="fa fa-envelope"></i>
 					<div class="overflow-hidden" style="text-align: center; direction: rtl;">
-						<h4 style="font-size: 25px; font-weight: 500;">پست الکترونیک</h4>
-						<p class="lead" style="font-size: 17px; font-weight: 300;">
+						<h4>پست الکترونیک</h4>
+						<p class="lead" style="font-size: 20px; font-weight: 100;">
 						        	soheil.ce.99@gmail.com
 						</p>
 					</div>
@@ -358,9 +364,9 @@
 				<div class="col-md-4">
 					<i class="fa fa-map-marker"></i>
 					<div class="overflow-hidden">
-						<h4 style="text-align: center; direction: rtl; font-size: 25px; font-weight: 500; ">نشانی</h4>
+						<h4 style="text-align: center; direction: rtl;">نشانی</h4>
 						<a href="https://maps.app.goo.gl/64LK4VYf1nwnE2bB6" target="_blank"
-						   style="font-size: 17px; font-weight: 300; text-decoration: none; color:rgb(255, 255, 255);">
+						   style="font-size: 18px;font-family: 'Vazirmatn', sans-serif; font-weight: 100; text-decoration: none; color:rgb(255, 255, 255);">
 							سمنان، میدان سعدی، بلوار 17 شهریور
 						</a>
 					</div>
