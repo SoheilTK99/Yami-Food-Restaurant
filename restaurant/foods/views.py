@@ -6,7 +6,7 @@ def food_list(request):
     context = {
         "foods" : food_list
     }
-    return render(request,"foods/list.html",context)
+    return render(request,"foods/home.html",context)
 
 def food_detail(request , id):
     food = Food.objects.get(id = id)

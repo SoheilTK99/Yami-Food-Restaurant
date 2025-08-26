@@ -19,11 +19,14 @@ from django.urls import path , include
 from django.conf import settings
 from django.conf.urls.static import static
 from django.views.generic import TemplateView
+from django.shortcuts import redirect
+
 
 
 urlpatterns = [
+    path('', lambda request: redirect('/home/')),
     path('admin/', admin.site.urls),
-    path('foods/', include('foods.urls')),
+    path('home/', include('foods.urls')),
     path('book/', include('reservation.urls')),
     path("blog/", include("blog.urls")),
     path('rule/', TemplateView.as_view(template_name="rule.html")),
