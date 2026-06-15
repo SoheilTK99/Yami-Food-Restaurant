@@ -26,7 +26,7 @@ SECRET_KEY = 'django-insecure-7#fvtl3te)+xdj-w&+_l=l($y_2ygb_%(wm^9=!a-*#3+a+ihk
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '.yammifood.ir', 'yammifood.ir', 'www.yammifood.ir', '.onrender.com']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', 'yammifood.ir', 'www.yammifood.ir', '.onrender.com', '0.0.0.0']
 
 
 # Application definition

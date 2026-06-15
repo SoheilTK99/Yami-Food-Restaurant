@@ -1,0 +1,11 @@
+services:
+  web:
+    build: .
+    container_name: restaurant_container
+    ports:
+      - "9000:8000"
+    volumes:
+      - ./db.sqlite3:/app/db.sqlite3
+      - ./media:/app/media
+      - ./static:/app/static
+    restart: always
